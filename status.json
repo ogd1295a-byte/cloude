@@ -1,0 +1,14 @@
+{
+  "url": "https://train.csie.ntu.edu.tw/school/news/certificate.php?id=6250",
+  "topic": "aip479cert",
+  "notified": false,
+  "last_check": {
+    "checked_at": "2026-09-06T17:38:50.358836+00:00",
+    "run_url": "https://github.com/ogd1295a-byte/cloude/actions/runs/34049247172",
+    "run_attempt": "1",
+    "status": "全班成績尚未送達",
+    "result": "success",
+    "notified_this_run": false,
+    "error": null
+  }
+}
