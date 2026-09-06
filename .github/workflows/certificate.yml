@@ -1,0 +1,37 @@
+name: Certificate monitor
+
+on:
+  schedule:
+    - cron: '32 * * * *'   
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: certificate-6250
+  cancel-in-progress: false
+
+jobs:
+  check:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: '0.12.1'
+          python-version: '3.12'
+          enable-cache: false
+      - name: Run tests
+        run: uv run --locked python -m unittest discover -s tests -v
+      - name: Read state branch (create it on first run)
+        id: state
+        run: bash scripts/state_branch.sh prepare
+      - name: Check certificate and notify
+        id: check
+        run: uv run --locked python check_certificate.py
+      - name: Commit this check to state branch
+        if: always() && steps.state.outcome == 'success' && hashFiles('.state/history.jsonl') != '' && steps.check.outcome != 'skipped'
+        run: bash scripts/state_branch.sh save
