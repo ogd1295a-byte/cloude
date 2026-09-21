@@ -3,8 +3,8 @@
   "topic": "aip479cert",
   "notified": false,
   "last_check": {
-    "checked_at": "2026-09-21T14:26:38.955275+00:00",
-    "run_url": "https://github.com/ogd1295a-byte/cloude/actions/runs/35612173689",
+    "checked_at": "2026-09-21T19:39:34.470976+00:00",
+    "run_url": "https://github.com/ogd1295a-byte/cloude/actions/runs/35646181706",
     "run_attempt": "1",
     "status": "證書製作中",
     "result": "success",
